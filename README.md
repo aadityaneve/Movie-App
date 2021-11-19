@@ -1,5 +1,5 @@
 # Movie-App-React
-App Link: https://aadityaneve.github.io/Movie-App-React
+App Link: https://aadityaneve.github.io/Movie-App
 
 # Getting Started with Create React App
 
