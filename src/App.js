@@ -77,8 +77,8 @@ function App() {
                         (buttonPopup) ? (
                             <VideoPopup trigger={buttonPopup} setButtonPopup={setButtonPopup}>
                                 {getTrailer(searchTrailerId)}
-                                <iframe type="text/html" height="100%" width="100%"
-                                    src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=1`} frameborder="0" allowfullscreen>
+                                <iframe className="videoContainer" type="text/html" height="100%" width="100%"
+                                    src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=1`} allow="autoplay; encrypted-media" frameborder="0" allowfullscreen>
                                 </iframe>
                             </VideoPopup>
                         ) : null
