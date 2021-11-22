@@ -61,6 +61,12 @@ header {
     width: 300px;
 }
 
+.getTrailer {
+    position: absolute;
+    filter: drop-shadow(2px 1px 10px rgb(255, 255, 255));
+    margin-left: 10px;
+}
+
 .movie img {
     object-fit: cover;
     width: 100%;
@@ -116,4 +122,33 @@ header {
 
 .tag.red {
     color: red;
+}
+
+.videoPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoPopupInner {
+    position: relative;
+    padding: 32px;
+    height: 100%;
+    max-height: 80vh;
+    width: 100%;
+    max-width: 80vw;
+    background-color: #22254b;
+}
+
+.videoPopupInner .videoPopupCloseBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
 }

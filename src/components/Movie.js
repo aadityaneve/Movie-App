@@ -1,4 +1,6 @@
 import React from "react";
+import { VideocamSharp } from "react-ionicons";
+
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
 const setVoteClass = (vote) => {
@@ -12,6 +14,9 @@ const setVoteClass = (vote) => {
 };
 
 const Movie = ({
+    setSearchTrailerId,
+    setButtonPopup,
+    id,
     title,
     poster_path: posterPath,
     overview,
@@ -19,6 +24,17 @@ const Movie = ({
 }) => (
     <div className="movie">
         <div className="movieHeader">
+            <VideocamSharp
+                className="getTrailer"
+                color={"#00000"}
+                // shake
+                height="50px"
+                width="50px"
+                onClick={() => {
+                    setSearchTrailerId(id);
+                    setButtonPopup(true);
+                }}
+            />
             <img
                 src={
                     posterPath

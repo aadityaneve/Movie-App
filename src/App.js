@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Movie from "./components/Movie";
+import VideoPopup from "./components/VideoPopup";
 
 const FEATURED_API =
     "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=14dc73a4bd1abf7c14d4209c112b4496&page=1";
@@ -10,6 +11,9 @@ const SEARCH_API =
 function App() {
     const [movies, setMovies] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchTrailerId, setSearchTrailerId] = useState("");
+    const [trailerKey, setTrailerKey] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
 
     const getMovies = (API) => {
         axios
@@ -21,6 +25,19 @@ function App() {
                 alert(error.message);
             });
     };
+
+    const getTrailer = (searchTrailerId) => {
+        axios
+            .get(`https://api.themoviedb.org/3/movie/${searchTrailerId}/videos?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US`)
+            .then((response) => {
+                setTrailerKey(response.data.results[0].key);
+                return true;
+            })
+            .catch((error) => {
+                alert(error.message)
+                return false;
+            })
+    }
 
     useEffect(() => {
         getMovies(FEATURED_API);
@@ -54,7 +71,19 @@ function App() {
             </header>
             <div className="movieContainer">
                 {movies.length > 0 &&
-                    movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+                    movies.map((movie) => <Movie key={movie.id} {...movie} setButtonPopup={setButtonPopup} setSearchTrailerId={setSearchTrailerId} />)}
+
+                    {
+                        (buttonPopup) ? (
+                            <VideoPopup trigger={buttonPopup} setButtonPopup={setButtonPopup}>
+                                {getTrailer(searchTrailerId)}
+                                <iframe height="100%" width="100%"
+                                    src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}>
+                                </iframe>
+                            </VideoPopup>
+                        ) : null
+                    }
+                
             </div>
         </>
     );
