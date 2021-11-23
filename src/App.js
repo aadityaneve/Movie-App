@@ -82,7 +82,9 @@ function App() {
                 }
             })
             .catch((error) => {
-                alert(error.message);
+                // alert(error.message);
+                alert("TRAILER NOT FOUND"+"\n"+error.message);
+                setButtonPopup(false);
             });
     };
 
