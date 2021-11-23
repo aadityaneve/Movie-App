@@ -21,13 +21,13 @@ const Movie = ({
     poster_path: posterPath,
     overview,
     vote_average: voteAverage,
+    release_date: releaseDate,
 }) => (
     <div className="movie">
         <div className="movieHeader">
             <VideocamSharp
                 className="getTrailer"
                 color={"#00000"}
-                // shake
                 height="50px"
                 width="50px"
                 onClick={() => {
@@ -35,6 +35,7 @@ const Movie = ({
                     setButtonPopup(true);
                 }}
             />
+            <span className="releaseDate">{releaseDate}</span>
             <img
                 src={
                     posterPath
@@ -42,6 +43,7 @@ const Movie = ({
                         : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1459&q=80"
                 }
                 alt="title"
+                placeholder={releaseDate}
             />
             <div className="movieInfo">
                 <h3>{title}</h3>
