@@ -27,6 +27,8 @@ function App() {
     const [buttonPopup, setButtonPopup] = useState(false);
     const [page, setPage] = useState(1);
     const [searchPage, setSearchPage] = useState(1);
+    const [toggleNavItems, setToggleNavItems] = useState(true);
+    const { innerWidth, innerHeight } = window;
 
     const getMovies = () => {
         axios
@@ -34,7 +36,7 @@ function App() {
             .then((response) => {
                 setMovies(response.data.results);
                 if (response.data.results.length === 0) {
-                    alert("No Movies Found.");
+                    // alert("No Movies Found.");
                     handleDecrement();
                 }
             })
@@ -49,7 +51,7 @@ function App() {
             .then((response) => {
                 setMovies(response.data.results);
                 if (response.data.results.length === 0) {
-                    alert("No Movies Found.");
+                    // alert("No Movies Found.");
                     handleDecrement();
                 }
             })
@@ -120,11 +122,41 @@ function App() {
         }
     };
 
+    useEffect(() => {
+        if(innerWidth >= 850){
+            setToggleNavItems(true);
+        }
+        if(innerWidth < 850){
+            setToggleNavItems(false);
+        }
+    }, [innerWidth])
+
+    const toggleBurger = () => {
+        setToggleNavItems(true);
+        setTimeout(() => {
+            setToggleNavItems(false);
+            if (toggleNavItems) {
+            }
+        }, 4000)
+    };
+
     return (
         <>
             <header>
                 <form className="navForm">
-                    <ul className="navItems">
+                    <div onClick={toggleBurger} id="burger" className="burger">
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                    </div>
+                    <ul
+                        style={
+                            toggleNavItems
+                                ? { display: "flex" }
+                                : { display: "none" }
+                        }
+                        className="navItems"
+                    >
                         <li
                             onClick={() => {
                                 setPage(1);
@@ -166,14 +198,14 @@ function App() {
                             Upcoming
                         </li>
                     </ul>
-                    <input
-                        className="search"
-                        type="text"
-                        placeholder="Search..."
-                        value={searchQuery}
-                        onChange={handleOnChange}
-                    />
                 </form>
+                <input
+                    className="search"
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={handleOnChange}
+                />
             </header>
             <div className="movieContainer">
                 {movies.length > 0 &&

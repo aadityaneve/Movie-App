@@ -31,11 +31,21 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-evenly;
     background-color: #373b69;
     padding: 1rem;
     position: fixed;
     width: 100%;
     z-index: 1;
+}
+
+header > form {
+    flex-basis: 800px;
+}
+
+header > input {
+    justify-content: flex-end;
 }
 
 .navForm {
@@ -68,6 +78,8 @@ header {
     font-family: inherit;
     font-size: 1.2rem;
     padding: 0.5rem 1.5rem;
+
+    height: fit-content;
 }
 
 .search:focus {
@@ -216,11 +228,66 @@ header {
     font-size: large;
     font-weight: 700;
 
-    background-color: rgb(186,183,211);
+    background-color: rgb(186, 183, 211);
 }
 
 .releaseDate {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.burger {
+    height: 43px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    display: none;
+}
+
+.burger > .bar {
+    width: 40px;
+    border: 3px solid rgb(255, 255, 255);
+}
+
+.burger:hover + .navItems {
+    /* display: block; */
+}
+
+@media screen and (max-width: 850px) {
+    header {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .burger {
+        display: block;
+        height: 43px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .search {
+        box-shadow: 3px 3px 5px rgba(255, 255, 255, 0.2);
+    }
+
+    .navForm {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        height: 100%;
+
+        gap: 15px;
+    }
+
+    .navItems {
+        flex-direction: column;
+        flex-basis: 150px;
+        justify-content: space-between;
+
+        align-items: flex-start;
+
+        display: none;
+    }
 }
