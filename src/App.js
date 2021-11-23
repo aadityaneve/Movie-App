@@ -43,6 +43,7 @@ function App() {
             .catch((error) => {
                 alert(error.message);
             });
+        window.scrollTo(0, 0);
     };
 
     const searchMovies = (searchQuery) => {
@@ -58,6 +59,7 @@ function App() {
             .catch((error) => {
                 alert(error.message);
             });
+        window.scrollTo(0, 0);
     };
 
     const getTrailer = (searchTrailerId) => {
@@ -108,6 +110,7 @@ function App() {
                 prevPage >= 1 ? prevPage + 1 : (prevPage = 1)
             );
         }
+        window.scrollTo(0, 0);
     };
 
     const handleDecrement = () => {
@@ -120,16 +123,17 @@ function App() {
                 prevPage > 1 ? prevPage - 1 : (prevPage = 1)
             );
         }
+        window.scrollTo(0, 0);
     };
 
     useEffect(() => {
-        if(innerWidth >= 850){
+        if (innerWidth >= 850) {
             setToggleNavItems(true);
         }
-        if(innerWidth < 850){
+        if (innerWidth < 850) {
             setToggleNavItems(false);
         }
-    }, [innerWidth])
+    }, [innerWidth]);
 
     const toggleBurger = () => {
         setToggleNavItems(true);
@@ -137,7 +141,7 @@ function App() {
             setToggleNavItems(false);
             if (toggleNavItems) {
             }
-        }, 4000)
+        }, 4000);
     };
 
     return (
