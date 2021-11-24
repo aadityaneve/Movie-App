@@ -207,7 +207,7 @@ function App() {
                 </form>
                 <input
                     className="search"
-                    type="text"
+                    type="search"
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={handleOnChange}
