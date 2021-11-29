@@ -31,8 +31,8 @@ function App() {
     const { innerWidth, innerHeight } = window;
     const [visitorCount, setVisitorCount] = useState(1);
 
-    const getMovies = async () => {
-        await axios
+    const getMovies = () => {
+        axios
             .get(API + page)
             .then((response) => {
                 setMovies(response.data.results);
@@ -47,8 +47,8 @@ function App() {
         window.scrollTo(0, 0);
     };
 
-    const searchMovies = async (searchQuery) => {
-        await axios
+    const searchMovies = (searchQuery) => {
+        axios
             .get(SEARCH_API + searchQuery + "&page=" + searchPage)
             .then((response) => {
                 setMovies(response.data.results);
@@ -63,8 +63,8 @@ function App() {
         window.scrollTo(0, 0);
     };
 
-    const getTrailer = async (searchTrailerId) => {
-        await axios
+    const getTrailer = (searchTrailerId) => {
+        axios
             .get(
                 `https://api.themoviedb.org/3/movie/${searchTrailerId}/videos?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US`
             )
