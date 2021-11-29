@@ -149,7 +149,7 @@ function App() {
 
     useEffect(async () => {
         await axios
-            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter")
+            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter/")
             .then((response) => {
                 
             })
@@ -158,7 +158,7 @@ function App() {
             });
 
         await axios
-            .get("https://shrouded-lowlands-25573.herokuapp.com/counter")
+            .get("https://shrouded-lowlands-25573.herokuapp.com/counter/")
             .then((response) => {
                 setVisitorCount(response.data.visitor_count);
             })
