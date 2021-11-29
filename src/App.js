@@ -149,28 +149,30 @@ function App() {
 
     useEffect(async () => {
         await axios
-            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter/")
-            .then((response) => {
-                
-            })
+            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter")
+            .then((response) => {})
             .catch((e) => {
-                console.log("Error: ", e.error);
+                console.log("Error: ", e.message);
             });
 
         await axios
-            .get("https://shrouded-lowlands-25573.herokuapp.com/counter/")
+            .get("https://shrouded-lowlands-25573.herokuapp.com/counter")
             .then((response) => {
                 setVisitorCount(response.data.visitor_count);
             })
             .catch((e) => {
-                console.log("Error: ", e.error);
+                console.log("Error: ", e.message);
             });
     }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <>
             <header>
-                <form className="navForm">
+                <form onSubmit={handleSubmit} className="navForm">
                     <div onClick={toggleBurger} id="burger" className="burger">
                         <div className="bar"></div>
                         <div className="bar"></div>
