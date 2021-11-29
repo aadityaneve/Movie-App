@@ -29,9 +29,10 @@ function App() {
     const [searchPage, setSearchPage] = useState(1);
     const [toggleNavItems, setToggleNavItems] = useState(true);
     const { innerWidth, innerHeight } = window;
+    const [visitorCount, setVisitorCount] = useState(1);
 
-    const getMovies = () => {
-        axios
+    const getMovies = async () => {
+        await axios
             .get(API + page)
             .then((response) => {
                 setMovies(response.data.results);
@@ -46,8 +47,8 @@ function App() {
         window.scrollTo(0, 0);
     };
 
-    const searchMovies = (searchQuery) => {
-        axios
+    const searchMovies = async (searchQuery) => {
+        await axios
             .get(SEARCH_API + searchQuery + "&page=" + searchPage)
             .then((response) => {
                 setMovies(response.data.results);
@@ -62,8 +63,8 @@ function App() {
         window.scrollTo(0, 0);
     };
 
-    const getTrailer = (searchTrailerId) => {
-        axios
+    const getTrailer = async (searchTrailerId) => {
+        await axios
             .get(
                 `https://api.themoviedb.org/3/movie/${searchTrailerId}/videos?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US`
             )
@@ -83,7 +84,7 @@ function App() {
             })
             .catch((error) => {
                 // alert(error.message);
-                alert("TRAILER NOT FOUND"+"\n"+error.message);
+                alert("TRAILER NOT FOUND" + "\n" + error.message);
                 setButtonPopup(false);
             });
     };
@@ -145,6 +146,24 @@ function App() {
             }
         }, 4000);
     };
+
+    useEffect(async () => {
+        await axios
+            .patch("http://localhost:3001/counter")
+            .then((response) => {})
+            .catch((e) => {
+                console.log("Error: ", e.error);
+            });
+
+        await axios
+            .get("http://localhost:3001/counter")
+            .then((response) => {
+                setVisitorCount(response.data.visitor_count);
+            })
+            .catch((e) => {
+                console.log("Error: ", e.error);
+            });
+    }, []);
 
     return (
         <>
@@ -247,6 +266,7 @@ function App() {
                     <button onClick={handleDecrement}>
                         PREV PAGE {searchQuery ? searchPage : page}
                     </button>
+                    <h2>Visitor: {visitorCount}</h2>
                     <button onClick={handleIncrement}>
                         NEXT PAGE {searchQuery ? searchPage : page}
                     </button>
