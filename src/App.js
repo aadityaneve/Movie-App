@@ -29,7 +29,7 @@ function App() {
     const [searchPage, setSearchPage] = useState(1);
     const [toggleNavItems, setToggleNavItems] = useState(true);
     const { innerWidth, innerHeight } = window;
-    const [visitorCount, setVisitorCount] = useState(1);
+    const [visitorCount, setVisitorCount] = useState(null);
 
     const getMovies = () => {
         axios
@@ -149,14 +149,16 @@ function App() {
 
     useEffect(async () => {
         await axios
-            .patch("http://localhost:3001/counter")
-            .then((response) => {})
+            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter")
+            .then((response) => {
+                
+            })
             .catch((e) => {
                 console.log("Error: ", e.error);
             });
 
         await axios
-            .get("http://localhost:3001/counter")
+            .get("https://shrouded-lowlands-25573.herokuapp.com/counter")
             .then((response) => {
                 setVisitorCount(response.data.visitor_count);
             })
@@ -266,7 +268,7 @@ function App() {
                     <button onClick={handleDecrement}>
                         PREV PAGE {searchQuery ? searchPage : page}
                     </button>
-                    <h2>Visitor: {visitorCount}</h2>
+                    <h2 className="visitorCounter">Visitor: {visitorCount}</h2>
                     <button onClick={handleIncrement}>
                         NEXT PAGE {searchQuery ? searchPage : page}
                     </button>
