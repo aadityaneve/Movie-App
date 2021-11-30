@@ -29,7 +29,7 @@ function App() {
     const [searchPage, setSearchPage] = useState(1);
     const [toggleNavItems, setToggleNavItems] = useState(true);
     const { innerWidth, innerHeight } = window;
-    const [visitorCount, setVisitorCount] = useState(null);
+    const [visitorCount, setVisitorCount] = useState();
 
     const getMovies = () => {
         axios
@@ -150,7 +150,10 @@ function App() {
     useEffect(async () => {
         await axios
             .patch("https://shrouded-lowlands-25573.herokuapp.com/counter")
-            .then((response) => {})
+            .then((response) => {
+                // setVisitorCount(response.data.visitor_count);
+                // console.log(response);
+            })
             .catch((e) => {
                 console.log("Error: ", e.message);
             });
