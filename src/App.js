@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Movie from "./components/Movie";
-import VideoPopup from "./components/VideoPopup";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Movie from './components/Movie';
+import VideoPopup from './components/VideoPopup';
 
-const FEATURED_API =
-    "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=14dc73a4bd1abf7c14d4209c112b4496&page=";
+/* const FEATURED_API =
+    'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=14dc73a4bd1abf7c14d4209c112b4496&page='; */
 const SEARCH_API =
-    "https://api.themoviedb.org/3/search/movie?&api_key=14dc73a4bd1abf7c14d4209c112b4496&query=";
+    'https://api.themoviedb.org/3/search/movie?&api_key=14dc73a4bd1abf7c14d4209c112b4496&query=';
 const POPULAR_API =
-    "https://api.themoviedb.org/3/movie/popular?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=";
+    'https://api.themoviedb.org/3/movie/popular?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=';
 const NOW_PLAYING =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=";
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=';
 const TOP_RATED_API =
-    "https://api.themoviedb.org/3/movie/top_rated?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=";
+    'https://api.themoviedb.org/3/movie/top_rated?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=';
 const UPCOMING_API =
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=";
+    'https://api.themoviedb.org/3/movie/upcoming?api_key=14dc73a4bd1abf7c14d4209c112b4496&language=en-US&page=';
 
 function App() {
     const [movies, setMovies] = useState([]);
     const [API, setAPI] = useState(
-        "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=14dc73a4bd1abf7c14d4209c112b4496&page="
+        'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=14dc73a4bd1abf7c14d4209c112b4496&page='
     );
-    const [searchQuery, setSearchQuery] = useState("");
-    const [searchTrailerId, setSearchTrailerId] = useState("");
-    const [trailerKey, setTrailerKey] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchTrailerId, setSearchTrailerId] = useState('');
+    const [trailerKey, setTrailerKey] = useState('');
     const [buttonPopup, setButtonPopup] = useState(false);
     const [page, setPage] = useState(1);
     const [searchPage, setSearchPage] = useState(1);
     const [toggleNavItems, setToggleNavItems] = useState(true);
-    const { innerWidth, innerHeight } = window;
+    const { innerWidth, /* innerHeight */ } = window;
     const [visitorCount, setVisitorCount] = useState();
 
     const getMovies = () => {
@@ -49,7 +49,7 @@ function App() {
 
     const searchMovies = (searchQuery) => {
         axios
-            .get(SEARCH_API + searchQuery + "&page=" + searchPage)
+            .get(SEARCH_API + searchQuery + '&page=' + searchPage)
             .then((response) => {
                 setMovies(response.data.results);
                 if (response.data.results.length === 0) {
@@ -71,7 +71,7 @@ function App() {
             .then((response) => {
                 let flag = true;
                 for (let i = 0; i < response.data.results.length; i++) {
-                    if (response.data.results[i].type === "Teaser") {
+                    if (response.data.results[i].type === 'Teaser') {
                         setTrailerKey(response.data.results[i].key);
                         flag = false;
                         break;
@@ -84,7 +84,7 @@ function App() {
             })
             .catch((error) => {
                 // alert(error.message);
-                alert("TRAILER NOT FOUND" + "\n" + error.message);
+                alert('TRAILER NOT FOUND', '\n', error.message);
                 setButtonPopup(false);
             });
     };
@@ -147,24 +147,24 @@ function App() {
         }, 4000);
     };
 
-    useEffect(async () => {
-        await axios
-            .patch("https://shrouded-lowlands-25573.herokuapp.com/counter")
+    useEffect(() => {
+        axios
+            .patch('https://shrouded-lowlands-25573.herokuapp.com/counter')
             .then((response) => {
                 // setVisitorCount(response.data.visitor_count);
                 // console.log(response);
             })
             .catch((e) => {
-                console.log("Error: ", e.message);
+                console.log('Error: ', e.message);
             });
 
-        await axios
-            .get("https://shrouded-lowlands-25573.herokuapp.com/counter")
+        axios
+            .get('https://shrouded-lowlands-25573.herokuapp.com/counter')
             .then((response) => {
                 setVisitorCount(response.data.visitor_count);
             })
             .catch((e) => {
-                console.log("Error: ", e.message);
+                console.log('Error: ', e.message);
             });
     }, []);
 
@@ -175,26 +175,26 @@ function App() {
     return (
         <>
             <header>
-                <form onSubmit={handleSubmit} className="navForm">
-                    <div onClick={toggleBurger} id="burger" className="burger">
-                        <div className="bar"></div>
-                        <div className="bar"></div>
-                        <div className="bar"></div>
+                <form onSubmit={handleSubmit} className='navForm'>
+                    <div onClick={toggleBurger} id='burger' className='burger'>
+                        <div className='bar'></div>
+                        <div className='bar'></div>
+                        <div className='bar'></div>
                     </div>
                     <ul
                         style={
                             toggleNavItems
-                                ? { display: "flex" }
-                                : { display: "none" }
+                                ? { display: 'flex' }
+                                : { display: 'none' }
                         }
-                        className="navItems"
+                        className='navItems'
                     >
                         <li
                             onClick={() => {
                                 setPage(1);
                                 setAPI(POPULAR_API);
                                 getMovies();
-                                setSearchQuery("");
+                                setSearchQuery('');
                             }}
                         >
                             Popular
@@ -204,7 +204,7 @@ function App() {
                                 setPage(1);
                                 setAPI(TOP_RATED_API);
                                 getMovies();
-                                setSearchQuery("");
+                                setSearchQuery('');
                             }}
                         >
                             Top Rated
@@ -214,7 +214,7 @@ function App() {
                                 setPage(1);
                                 setAPI(NOW_PLAYING);
                                 getMovies();
-                                setSearchQuery("");
+                                setSearchQuery('');
                             }}
                         >
                             Now Playing
@@ -224,7 +224,7 @@ function App() {
                                 setPage(1);
                                 setAPI(UPCOMING_API);
                                 getMovies();
-                                setSearchQuery("");
+                                setSearchQuery('');
                             }}
                         >
                             Upcoming
@@ -232,14 +232,14 @@ function App() {
                     </ul>
                 </form>
                 <input
-                    className="search"
-                    type="search"
-                    placeholder="Search..."
+                    className='search'
+                    type='search'
+                    placeholder='Search...'
                     value={searchQuery}
                     onChange={handleOnChange}
                 />
             </header>
-            <div className="movieContainer">
+            <div className='movieContainer'>
                 {movies.length > 0 &&
                     movies.map((movie) => (
                         <Movie
@@ -257,23 +257,24 @@ function App() {
                     >
                         {getTrailer(searchTrailerId)}
                         <iframe
+                            title={Math.random()}
                             key={searchTrailerId}
-                            className="videoContainer"
-                            type="text/html"
-                            height="100%"
-                            width="100%"
+                            className='videoContainer'
+                            type='text/html'
+                            height='100%'
+                            width='100%'
                             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=1`}
-                            allow="autoplay; encrypted-media;"
-                            frameBorder="0"
+                            allow='autoplay; encrypted-media;'
+                            frameBorder='0'
                             allowFullScreen
                         ></iframe>
                     </VideoPopup>
                 ) : null}
-                <div className="nextAndPrevBtn">
+                <div className='nextAndPrevBtn'>
                     <button onClick={handleDecrement}>
                         PREV PAGE {searchQuery ? searchPage : page}
                     </button>
-                    <h2 className="visitorCounter">Visitor: {visitorCount}</h2>
+                    <h2 className='visitorCounter'>Visitor: {visitorCount}</h2>
                     <button onClick={handleIncrement}>
                         NEXT PAGE {searchQuery ? searchPage : page}
                     </button>

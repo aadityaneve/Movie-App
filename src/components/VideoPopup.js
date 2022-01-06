@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 function VideoPopup(props) {
     return props.trigger ? (
-        <div className="videoPopup">
-            <div className="videoPopupInner">
+        <div className='videoPopup'>
+            <div className='videoPopupInner'>
                 <button
-                    className="videoPopupCloseBtn"
+                    className='videoPopupCloseBtn'
                     onClick={() => {
                         props.setButtonPopup(false);
                     }}
@@ -16,7 +16,7 @@ function VideoPopup(props) {
             </div>
         </div>
     ) : (
-        ""
+        ''
     );
 }
 
