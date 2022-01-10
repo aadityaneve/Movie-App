@@ -1,6 +1,6 @@
 # Movie-App
 
-App Link: https://aadityaneve.github.io/Movie-App
+App Link: <https://aadityaneve.github.io/Movie-App>
 
 I developed Movie-App during my Masai School journey, which was a personal project. I was extremely impassioned about ReactJS, which I had learned in 25 days.
 Tech Stack: [ NodeJS , React, MongoDB, Express ]
